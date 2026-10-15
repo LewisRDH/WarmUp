@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#ffffff">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Warm Up">
+<meta name="description" content="A simple, animated warm-up to follow before your run.">
+<title>Warm Up</title>
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Crect width='180' height='180' rx='40' fill='%23fff'/%3E%3Cpath d='M48 103l33-40 28 24 28-10M81 63l9 46-28 28m28-28 38 28' fill='none' stroke='%23252527' stroke-width='12' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='103' cy='43' r='12' fill='%23252527'/%3E%3C/svg%3E">
+<style>
+:root{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#202023;background:#fff;font-synthesis:none;-webkit-tap-highlight-color:transparent}*{box-sizing:border-box}body{margin:0}button{font:inherit;cursor:pointer;touch-action:manipulation}button:focus-visible,summary:focus-visible{outline:3px solid #007aff;outline-offset:4px}button:disabled{opacity:.3;cursor:default}main{max-width:520px;margin:auto;padding:24px 24px calc(124px + env(safe-area-inset-bottom))}header{display:flex;align-items:center;justify-content:space-between;margin-bottom:26px}.eyebrow{font-size:11px;font-weight:650;letter-spacing:1.9px;text-transform:uppercase;color:#77777d;margin:0 0 8px}h1{font-size:34px;letter-spacing:-1.4px;line-height:1.1;margin:0}header p{font-size:14px;color:#73737a;margin:9px 0 0}.icon-button{border:1px solid #e9e9ed;background:white;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;font-size:19px}.hero{border-radius:28px;background:#f7f7f9;padding:20px 22px 23px;text-align:center;position:relative}.hero-top{display:flex;justify-content:space-between;font-size:12px;color:#797980}.status{color:#53535b}.stage{height:206px;margin:2px auto 0;max-width:280px}.figure{height:100%;width:100%;overflow:visible}.figure line,.figure path{stroke-linecap:round;stroke-linejoin:round}.hero h2{font-size:24px;line-height:1.18;letter-spacing:-.7px;margin:4px auto 11px;max-width:330px}.cue{min-height:40px;font-size:14px;line-height:1.45;color:#707078;margin:0 auto;max-width:330px}.clock{font-size:56px;line-height:1.1;font-weight:600;letter-spacing:-2px;font-variant-numeric:tabular-nums;margin-top:16px}.clock small{font-size:14px;font-weight:400;letter-spacing:0;color:#77777d}.track{height:4px;background:#e4e4e9;border-radius:8px;overflow:hidden;margin-top:17px}.fill{height:100%;width:0;background:#242427;border-radius:8px}.under{display:flex;align-items:center;justify-content:space-between;margin-top:12px;color:#8a8a91;font-size:12px}.nav{display:flex;gap:10px}.nav button{border:0;background:transparent;color:#62626b;padding:10px;min-width:44px;min-height:44px;font-size:14px}.section-title{display:flex;justify-content:space-between;align-items:center;margin:29px 0 9px}.section-title h3{margin:0;font-size:18px;letter-spacing:-.4px}.section-title span{font-size:12px;color:#8a8a91}.exercise{width:100%;border:0;border-bottom:1px solid #efeff2;background:#fff;display:flex;align-items:center;padding:12px 4px;gap:13px;text-align:left;border-radius:0}.exercise.current{background:#f7f7f9;border-radius:15px;border-color:transparent}.thumb{width:57px;height:62px;flex-shrink:0}.exercise .name{display:block;font-size:14px;font-weight:550;line-height:1.35}.exercise .duration{display:block;color:#8a8a91;font-size:12px;margin-top:4px}.check{margin-left:auto;min-width:20px;font-size:13px;color:#96969e}.exercise.current .check{color:#202023}.note{margin-top:21px;color:#92929a;font-size:11px;line-height:1.55}.note summary{cursor:pointer;min-height:32px}footer{position:fixed;bottom:0;left:0;right:0;padding:16px 24px calc(16px + env(safe-area-inset-bottom));background:linear-gradient(to bottom,#ffffffee,#fff 30%);backdrop-filter:blur(12px);z-index:2}.controls{max-width:472px;margin:auto;display:flex;gap:10px}.primary{border:0;background:#242427;color:white;border-radius:17px;min-height:56px;flex:1;font-size:16px;font-weight:550}.reset{border:1px solid #e6e6eb;border-radius:17px;background:#fff;width:56px;font-size:22px}.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}@media(min-width:650px){main{padding-top:45px}.stage{height:230px}header{margin-bottom:30px}}@media(prefers-reduced-motion:reduce){.figure{opacity:1}}
+</style>
+</head>
+<body>
+<main>
+<header><div><p class="eyebrow">Before your run</p><h1>Warm up.</h1><p>Seven moves. A little more ready.</p></div><button class="icon-button" id="sound" aria-label="Turn sound cues on" aria-pressed="false">♪</button></header>
+<section class="hero" aria-label="Current exercise">
+<div class="hero-top"><span id="step">01 / 07</span><span id="status" class="status">Ready when you are</span></div>
+<div class="stage" id="stage" aria-hidden="true"></div>
+<h2 id="title"></h2><p id="cue" class="cue"></p>
+<div class="clock"><span id="remaining">10</span><small> sec</small></div>
+<div class="track" role="progressbar" aria-label="Warm-up progress" aria-valuemin="0" aria-valuemax="85" aria-valuenow="0" id="progress"><div class="fill" id="fill"></div></div>
+</section>
+<div class="under"><span id="total">1:25 remaining</span><div class="nav"><button id="prev" aria-label="Previous exercise">← Back</button><button id="next" aria-label="Next exercise">Next →</button></div></div>
+<div class="section-title"><h3>Your routine</h3><span>1 min 25 sec</span></div>
+<div id="routine" aria-label="Exercise list"></div>
+<details class="note"><summary>About this routine</summary><p>Exercises, order and durations transcribed from your Runna screenshots. The visible exercises add up to 1:25; the screenshots show 2:15 overall, so a part of the original routine may be missing. No extra exercises or time have been added.</p><p>The figures are original, simplified movement guides. For leg swings and hip circles, switch legs halfway through. Other moves alternate sides. Animation speed is illustrative; move at your own pace.</p><p>On iPhone: open the published page in Safari, tap Share, then Add to Home Screen. Keep this page open during the routine. No account, tracking or external assets.</p></details>
+<p id="announcement" class="sr-only" role="status" aria-live="polite"></p>
+</main>
+<footer><div class="controls"><button class="primary" id="start">Start warm-up <span aria-hidden="true">→</span></button><button class="reset" id="reset" aria-label="Reset routine">↺</button></div></footer>
+<script>
+'use strict';
+const exercises=[
+{name:'Torso Twists',seconds:10,type:'twist',cue:'Feet planted. Gently rotate your torso from side to side.'},
+{name:'Side Bend',seconds:10,type:'bend',cue:'Reach one arm overhead and lean to the side. Alternate sides.'},
+{name:'Standing Diagonal Toe Taps',seconds:15,type:'tap',cue:'Reach one hand towards the opposite foot, then alternate.'},
+{name:'Diagonal Leg Swing',seconds:10,type:'swing',cue:'Swing one leg diagonally across your body. Stay controlled.',unilateral:true},
+{name:'Hip Circles',seconds:15,type:'hip',cue:'Lift one knee and circle it outwards. Keep your torso tall.',unilateral:true},
+{name:'Body Weight Squat to Calf Raise',seconds:15,type:'squat',cue:'Squat, stand tall, then rise onto your toes. Repeat.'},
+{name:'Side Lunges',seconds:10,type:'lunge',cue:'Step wide. Bend one knee, shift back through centre, then alternate.'}
+];
+const $=id=>document.getElementById(id),totalSeconds=exercises.reduce((n,e)=>n+e.seconds,0);
+let index=0,elapsed=0,running=false,finished=false,last=0,muted=true,audioContext,wakeLock,sideAnnounced=false;
+const motion=matchMedia('(prefers-reduced-motion: reduce)');
+const svgNS='http://www.w3.org/2000/svg';
+function node(tag,attrs){const n=document.createElementNS(svgNS,tag);for(const [k,v]of Object.entries(attrs))n.setAttribute(k,v);return n}
+function figure(host,type){const svg=node('svg',{viewBox:'0 0 240 230',class:'figure'});host.append(svg);svg.append(node('ellipse',{cx:120,cy:216,rx:62,ry:5,fill:'#e8e8ed'}));const parts={};for(const key of ['farLeg','farArm','body','nearLeg','nearArm']){parts[key]=node('path',{fill:'none',stroke:key==='body'?'#8faaa1':key.startsWith('far')?'#9caca7':'#394a44','stroke-width':key==='body'?23:11});svg.append(parts[key])}parts.head=node('circle',{r:12,fill:'#cba68a'});svg.append(parts.head);parts.hair=node('path',{fill:'none',stroke:'#41403e','stroke-width':5});svg.append(parts.hair);return {parts,type}}
+const figures=[figure($('stage'),'twist')];
+exercises.forEach((e,i)=>{const b=document.createElement('button');b.className='exercise';b.type='button';b.innerHTML='<span class="thumb" aria-hidden="true"></span><span><span class="name">'+e.name+'</span><span class="duration">'+e.seconds+' seconds</span></span><span class="check" aria-hidden="true">'+String(i+1).padStart(2,'0')+'</span>';b.onclick=()=>select(i);$('routine').append(b);figures.push(figure(b.firstChild,e.type))});
+function draw(f,t){const s=Math.sin(t),c=Math.cos(t);let hip=[120,125],neck=[120,72],head=[120,49],ls=[109,78],rs=[131,78],le=[96,103],re=[144,103],lh=[112,111],rh=[128,111],lk=[107,167],rk=[133,167],lf=[104,208],rf=[138,208];
+if(f.type==='twist'){const a=s*19;neck=[120+a*.2,72];head=[120+a*.4,49];ls=[120-19*c,78];rs=[120+19*c,78];le=[ls[0]-13*c,101];re=[rs[0]+13*c,101];lh=[116+a,97];rh=[124+a,97]}
+if(f.type==='bend'){const a=s*26;neck=[120+a,73+Math.abs(s)*6];head=[120+a*1.2,49+Math.abs(s)*7];ls=[neck[0]-11,neck[1]+5];rs=[neck[0]+11,neck[1]+5];if(s>=0){le=[neck[0]-14,46];lh=[neck[0]+15,24];re=[148,108];rh=[135,123]}else{re=[neck[0]+14,46];rh=[neck[0]-15,24];le=[92,108];lh=[105,123]}}
+if(f.type==='tap'){const bend=(1-c)/2,side=s>=0?1:-1;lf=[80,208];rf=[160,208];lk=[91,167];rk=[149,167];neck=[120+side*13*bend,72+65*bend];head=[neck[0]+side*6*bend,neck[1]-23];ls=[neck[0]-12,neck[1]+5];rs=[neck[0]+12,neck[1]+5];le=[ls[0]-30+70*bend,95+60*bend];lh=[ls[0]-60+110*bend,88+112*bend];re=[rs[0]+30-70*bend,95+60*bend];rh=[rs[0]+60-110*bend,88+112*bend];if(side>0){re=[153,neck[1]-12];rh=[178,neck[1]-36]}else{le=[87,neck[1]-12];lh=[62,neck[1]-36]}}
+if(f.type==='swing'){lf=[110,208];lk=[112,167];const a=s*1.05;rk=[126+Math.sin(a)*48,125+Math.cos(a)*43];rf=[130+Math.sin(a)*90,125+Math.cos(a)*83];le=[87,103];lh=[68,89];re=[153,99];rh=[174,82]}
+if(f.type==='hip'){lf=[110,208];lk=[113,166];rk=[130+22*s,133+9*c];rf=[rk[0]+8,rk[1]+37];le=[89,105];lh=[108,122];re=[151,105];rh=[132,122]}
+if(f.type==='squat'){const q=Math.max(0,s)*35,raise=Math.max(0,-s)*9;hip=[120,125+q-raise];neck=[120,72+q-raise];head=[120,49+q-raise];ls=[109,78+q-raise];rs=[131,78+q-raise];lk=[97-q*.35,167+q*.18-raise];rk=[143+q*.35,167+q*.18-raise];lf=[92,208-raise];rf=[148,208-raise];le=[92,96+q-raise];re=[148,96+q-raise];lh=[119,89+q-raise];rh=[121,89+q-raise]}
+if(f.type==='lunge'){hip=[120+s*35,125+Math.abs(s)*15];neck=[hip[0],hip[1]-53];head=[hip[0],hip[1]-76];ls=[neck[0]-11,neck[1]+6];rs=[neck[0]+11,neck[1]+6];lf=[63,208];rf=[177,208];lk=[84+s*20,168+Math.abs(s)*8];rk=[156+s*20,168+Math.abs(s)*8];le=[neck[0]-26,neck[1]+30];re=[neck[0]+26,neck[1]+30];lh=[neck[0],neck[1]+21];rh=lh}
+const path=(...p)=>p.map((v,i)=>(i?'L':'M')+v.join(',')).join(' '),p=f.parts;p.body.setAttribute('d',path(neck,hip));p.farLeg.setAttribute('d',path(hip,lk,lf,[lf[0]-7,lf[1]+2]));p.nearLeg.setAttribute('d',path(hip,rk,rf,[rf[0]+7,rf[1]+2]));p.farArm.setAttribute('d',path(ls,le,lh));p.nearArm.setAttribute('d',path(rs,re,rh));p.head.setAttribute('cx',head[0]);p.head.setAttribute('cy',head[1]);p.hair.setAttribute('d',path([head[0]-10,head[1]-3],[head[0]-8,head[1]-11],[head[0]+1,head[1]-13],[head[0]+8,head[1]-8]));}
+function format(n){return Math.floor(n/60)+':'+String(n%60).padStart(2,'0')}
+function used(){return exercises.slice(0,index).reduce((n,e)=>n+e.seconds,0)+elapsed}
+function announce(text){$('announcement').textContent=text;if(!muted&&'speechSynthesis'in window){speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text);u.lang='en-GB';speechSynthesis.speak(u)}}
+function beep(){if(muted)return;try{const C=window.AudioContext||window.webkitAudioContext;audioContext=audioContext||new C();audioContext.resume();const o=audioContext.createOscillator(),g=audioContext.createGain();o.connect(g);g.connect(audioContext.destination);o.frequency.value=660;g.gain.setValueAtTime(.12,audioContext.currentTime);g.gain.exponentialRampToValueAtTime(.001,audioContext.currentTime+.18);o.start();o.stop(audioContext.currentTime+.18)}catch{}}
+async function wake(){try{if(running&&document.visibilityState==='visible'&&navigator.wakeLock&&!wakeLock)wakeLock=await navigator.wakeLock.request('screen')}catch{}}
+function release(){if(wakeLock){wakeLock.release().catch(()=>{});wakeLock=null}}
+function render(){const e=exercises[index];$('title').textContent=finished?'Ready to run.':e.name;$('cue').textContent=finished?'Warm-up complete. Enjoy your run.':e.cue;$('step').textContent=finished?'07 / 07':String(index+1).padStart(2,'0')+' / 07';$('status').textContent=finished?'All done':running?(e.unilateral?(elapsed>=e.seconds/2?'Second leg':'First leg'):'Keep moving'):elapsed>0?'Paused':'Ready when you are';$('remaining').textContent=finished?'0':Math.ceil(e.seconds-elapsed);$('total').textContent=finished?'Warm-up complete':format(Math.ceil(totalSeconds-used()))+' remaining';$('fill').style.width=(finished?100:used()/totalSeconds*100)+'%';$('progress').setAttribute('aria-valuenow',finished?totalSeconds:Math.floor(used()));$('start').textContent=finished?'Go again ↺':running?'Pause':used()>0?'Continue →':'Start warm-up →';$('prev').disabled=index===0&&!finished;$('next').disabled=finished;figures[0].type=e.type;Array.from($('routine').children).forEach((b,i)=>{b.classList.toggle('current',i===index&&!finished);if(i===index&&!finished)b.setAttribute('aria-current','step');else b.removeAttribute('aria-current');b.lastChild.textContent=i<index||finished?'✓':String(i+1).padStart(2,'0')})}
+function select(i){index=i;elapsed=0;finished=false;sideAnnounced=false;last=performance.now();render();if(running)announce(exercises[index].name)}
+function complete(){running=false;finished=true;elapsed=exercises[index].seconds;release();render();beep();announce('Warm-up complete. Enjoy your run.')}
+function advance(){if(index===exercises.length-1)complete();else{select(index+1);beep()}}
+$('start').onclick=()=>{if(finished)select(0);running=!running;last=performance.now();if(running){beep();announce(exercises[index].name);wake()}else{release();if('speechSynthesis'in window)speechSynthesis.cancel()}render()};
+$('reset').onclick=()=>{running=false;release();if('speechSynthesis'in window)speechSynthesis.cancel();select(0)};
+$('prev').onclick=()=>select(Math.max(0,index-1));$('next').onclick=advance;
+$('sound').onclick=()=>{muted=!muted;$('sound').setAttribute('aria-pressed',String(!muted));$('sound').setAttribute('aria-label',muted?'Turn sound cues on':'Turn sound cues off');$('sound').textContent=muted?'♪':'♫';if(muted&&'speechSynthesis'in window)speechSynthesis.cancel();else beep()};
+document.addEventListener('visibilitychange',()=>{if(document.hidden&&running){running=false;release();if('speechSynthesis'in window)speechSynthesis.cancel();render();$('status').textContent='Paused while away'}else if(!document.hidden)wake()});
+function frame(now){if(running){elapsed+=Math.max(0,(now-last)/1000);const e=exercises[index];if(e.unilateral&&!sideAnnounced&&elapsed>=e.seconds/2){sideAnnounced=true;announce('Switch legs')}if(elapsed>=e.seconds)advance();render()}last=now;const t=motion.matches?0:now/850;figures.forEach(f=>draw(f,t));requestAnimationFrame(frame)}
+render();requestAnimationFrame(frame);
+</script>
+</body>
+</html>
